@@ -13,7 +13,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-  Gender selectedGender;
+  Gender selectedGender = Gender.male;
+  int height = 172;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +70,28 @@ class _InputPageState extends State<InputPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.ideographic,
+                        textBaseline: TextBaseline.alphabetic,
                         children: <Widget>[
-                          Text('180', style: kMainTextStyle,),
+                          Text(height.toString(), style: kMainTextStyle,),
                           Text('CM', style: kLabelTextStyle,),
                         ],
+                      ),
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          activeTrackColor: Colors.white,
+                          thumbColor: kSecondaryColor,
+                          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
+                          overlayShape: RoundSliderOverlayShape(overlayRadius: 16.0)
+                        ),
+                        child: Slider(value: height.toDouble(),
+//                            activeColor: kSecondaryColor,
+                            min: 120.0,
+                            max: 220.0,
+                            onChanged: (double newHeight){
+                          setState(() {
+                            height = newHeight.toInt();
+                          });
+                            }),
                       )
                     ],
                   ),
@@ -106,9 +124,4 @@ class _InputPageState extends State<InputPage> {
 
 
 
-//Color(0x55034ea2)
-//Color(0xff034ea2)
-//Color(0xff0075e3)
-//Color(0xff003363)
-//Color(0xff95ff84)
-//Color(0xff70bf63)
+
