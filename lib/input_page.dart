@@ -15,6 +15,8 @@ class _InputPageState extends State<InputPage> {
 
   Gender selectedGender = Gender.male;
   int height = 172;
+  int weight = 72;
+  int age = 26;
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +103,71 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: <Widget>[
-                Expanded(child: ReusableCard(colour: kActiveCardColour)),
                 Expanded(
                     child: ReusableCard(
-                  colour: kActiveCardColour,
-
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('WEIGHT', style: kLabelTextStyle,),
+                          Text(weight.toString(), style: kMainTextStyle,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                onPress: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.minus,
+                              ),
+                              SizedBox(width: 10,),
+                              RoundIconButton(
+                                onPress: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.plus,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                        colour: kActiveCardColour)
+                ),
+                Expanded(
+                    child: ReusableCard(
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('AGE', style: kLabelTextStyle,),
+                          Text(age.toString(), style: kMainTextStyle,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                onPress: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.minus,
+                              ),
+                              SizedBox(width: 10,),
+                              RoundIconButton(
+                                onPress: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                                icon: FontAwesomeIcons.plus,
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      colour: kActiveCardColour,
                 )),
               ],
             ),
@@ -122,6 +184,28 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
+class RoundIconButton extends StatelessWidget {
+
+  RoundIconButton({@required this.icon,@required this.onPress});
+
+  final IconData icon;
+  final Function onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child:  Icon(icon),
+      onPressed: onPress,
+      elevation: 0.0,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: kSecondaryColorShade1,
+    );
+  }
+}
 
 
 

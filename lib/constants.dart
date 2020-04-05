@@ -17,4 +17,4 @@ const TextStyle kLabelTextStyle = TextStyle(
   fontSize: 18.0,
 );
 const TextStyle kMainTextStyle =
-    TextStyle(fontSize: 50.0, color: Colors.white, fontWeight: FontWeight.w900);
+TextStyle(fontSize: 50.0, color: Colors.white, fontWeight: FontWeight.w900);
