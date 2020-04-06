@@ -3,12 +3,14 @@ import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
 
-class ResultsPage extends StatefulWidget {
-  @override
-  _ResultsPageState createState() => _ResultsPageState();
-}
+class ResultsPage extends StatelessWidget {
 
-class _ResultsPageState extends State<ResultsPage> {
+  ResultsPage({@required this.bmiResult,@required this.resultText, @required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +23,13 @@ class _ResultsPageState extends State<ResultsPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
-                child: Text(
-                  'Your Result',
-                  style: kTitleTextStyle,
+                child: Container(
+                  padding: EdgeInsets.all(15.0),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    'Your Result',
+                    style: kTitleTextStyle,
+                  ),
                 ),),
             Expanded(
               flex: 5,
@@ -31,13 +37,14 @@ class _ResultsPageState extends State<ResultsPage> {
                 colour: kActiveCardColour,
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text('Overweight',
+                    Text(resultText.toUpperCase(),
                     style: kResultTextStyle,),
-                    Text('28.4',
+                    Text(bmiResult,
                     style: kBMITextStyle,),
-                    Text('You have a higher than normal',
-                    style: kResultCaptionTextStyle,)
+                    Text(interpretation,
+                    style: kResultCaptionTextStyle,textAlign: TextAlign.center,)
                   ],
                 ),
               ),
